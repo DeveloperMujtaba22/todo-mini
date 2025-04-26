@@ -1,0 +1,30 @@
+<h2>My Notes</h2>
+
+<div class="input-group">
+  <input type="text" [(ngModel)]="title" placeholder="Note title">
+  <input type="text" [(ngModel)]="context" placeholder="Note content">
+  <button (click)="isEditing ? updateNote() : addNotes()">
+    {{ isEditing ? 'Update Note' : 'Add Note' }}
+  </button>
+  <button *ngIf="isEditing" (click)="cancelEdit()" class="cancel-btn">Cancel</button>
+</div>
+
+<table class="notes-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let note of notes; let i = index">
+      <td>{{note.title}}</td>
+      <td>{{note.context}}</td>
+      <td class="actions">
+        <button (click)="editNote(i)" class="edit-btn">Edit</button>
+        <button (click)="deleteNote(i)" class="delete-btn">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
